@@ -13,7 +13,7 @@ describe GContacts::Client do
       contacts = client.all(:params => {"updated-min" => "1234"})
 
       contacts.id.should == "john.doe@gmail.com"
-      contacts.updated.to_s.should == "2012-04-05T21:46:31+00:00"
+      contacts.updated.to_s.should == "2012-04-05 21:46:31 UTC"
       contacts.title.should == "Johnny's Contacts"
       contacts.author.should == {"name" => "Johnny", "email" => "john.doe@gmail.com"}
       contacts.next_uri.should be_nil
@@ -25,7 +25,7 @@ describe GContacts::Client do
       contact = contacts.first
       contact.id.should == "http://www.google.com/m8/feeds/contacts/john.doe%40gmail.com/base/fd8fb1a55f2916e"
       contact.title.should == "Steve Stephson"
-      contact.updated.to_s.should == "2012-02-06T01:14:56+00:00"
+      contact.updated.to_s.should == "2012-02-06 01:14:56 UTC"
       contact.edit_uri.should == URI("https://www.google.com/m8/feeds/contacts/john.doe%40gmail.com/full/fd8fb1a55f2916e")
       contact.etag.should == '"OWUxNWM4MTEzZjEyZTVjZTQ1Mjgy."'
       contact.data.should == {"gd:name" => [{"gd:fullName" => "Steve Stephson", "gd:givenName" => "Steve", "gd:familyName" => "Stephson"}], "gd:email" => [{"@rel" => "http://schemas.google.com/g/2005#other", "@address" => "steve.stephson@gmail.com", "@primary" => "true"}, {"@rel" => "http://schemas.google.com/g/2005#other", "@address" => "steve@gmail.com"}], "gd:phoneNumber" => [{"text" => "3005004000", "@rel" => "http://schemas.google.com/g/2005#mobile"}, {"text" => "+130020003000", "@rel" => "http://schemas.google.com/g/2005#work"}]}
@@ -33,7 +33,7 @@ describe GContacts::Client do
       contact = contacts[1]
       contact.id.should == "http://www.google.com/m8/feeds/contacts/john.doe%40gmail.com/base/894bc75ebb5187d"
       contact.title.should == "Jill Doe"
-      contact.updated.to_s.should == "2011-07-01T18:08:32+00:00"
+      contact.updated.to_s.should == "2011-07-01 18:08:32 UTC"
       contact.edit_uri.should == URI("https://www.google.com/m8/feeds/contacts/john.doe%40gmail.com/full/894bc75ebb5187d")
       contact.etag.should == '"ZGRhYjVhMTNkMmFhNzJjMzEyY2Ux."'
       contact.data.should == {"gd:name" => [{"gd:fullName" => "Jill Doe", "gd:givenName" => "Jill", "gd:familyName" => "Doe"}]}
@@ -41,7 +41,7 @@ describe GContacts::Client do
       contact = contacts[2]
       contact.id.should == "http://www.google.com/m8/feeds/contacts/john.doe%40gmail.com/base/cd046ed518f0fb0"
       contact.title.should == 'Dave "Terry" Pratchett'
-      contact.updated.to_s.should == "2011-06-29T23:11:57+00:00"
+      contact.updated.to_s.should == "2011-06-29 23:11:57 UTC"
       contact.edit_uri.should == URI("https://www.google.com/m8/feeds/contacts/john.doe%40gmail.com/full/cd046ed518f0fb0")
       contact.etag.should == '"ZWVhMDQ0MWI0MWM0YTJkM2MzY2Zh."'
       contact.data.should == {"gd:name" => [{"gd:fullName" => "Dave \"Terry\" Pratchett", "gd:givenName" => "Dave", "gd:additionalName" => "\"Terry\"", "gd:familyName" => "Pratchett"}], "gd:organization" => [{"gd:orgName" => "Foo Bar Inc", "@rel" => "http://schemas.google.com/g/2005#work"}], "gd:email" => [{"@rel" => "http://schemas.google.com/g/2005#home", "@address" => "dave.pratchett@gmail.com", "@primary" => "true"}], "gd:phoneNumber" => [{"text" => "7003002000", "@rel" => "http://schemas.google.com/g/2005#mobile"}]}
@@ -49,7 +49,7 @@ describe GContacts::Client do
       contact = contacts[3]
       contact.id.should == "http://www.google.com/m8/feeds/contacts/john.doe%40gmail.com/base/a1941d3d13cdc66"
       contact.title.should == "Jane Doe"
-      contact.updated.to_s.should == "2012-04-04T02:08:37+00:00"
+      contact.updated.to_s.should == "2012-04-04 02:08:37 UTC"
       contact.edit_uri.should == URI("https://www.google.com/m8/feeds/contacts/john.doe%40gmail.com/full/a1941d3d13cdc66")
       contact.etag.should == '"Yzg3MTNiODJlMTRlZjZjN2EyOGRm."'
       contact.data.should == {"gd:name" => [{"gd:fullName" => "Jane Doe", "gd:givenName" => "Jane", "gd:familyName" => "Doe"}], "gd:email" => [{"@rel" => "http://schemas.google.com/g/2005#home", "@address" => "jane.doe@gmail.com", "@primary" => "true"}], "gd:phoneNumber" => [{"text" => "16004003000", "@rel" => "http://schemas.google.com/g/2005#mobile"}], "gd:structuredPostalAddress" => [{"gd:formattedAddress" => "5 Market St\n        San Francisco\n        CA", "gd:street" => "5 Market St", "gd:city" => "San Francisco", "gd:region" => "CA", "@rel" => "http://schemas.google.com/g/2005#home"}]}
@@ -224,7 +224,7 @@ describe GContacts::Client do
       groups = client.all(:params => {"updated-min" => "1234"})
 
       groups.id.should == "john.doe@gmail.com"
-      groups.updated.to_s.should == "2012-04-05T22:32:03+00:00"
+      groups.updated.to_s.should == "2012-04-05 22:32:03 UTC"
       groups.title.should == "Johnny's Contact Groups"
       groups.author.should == {"name" => "Johnny", "email" => "john.doe@gmail.com"}
       groups.next_uri.should be_nil
@@ -236,7 +236,7 @@ describe GContacts::Client do
       group = groups.first
       group.id.should == "http://www.google.com/m8/feeds/groups/john.doe%40gmail.com/base/6"
       group.title.should == "System Group: My Contacts"
-      group.updated.to_s.should == "1970-01-01T00:00:00+00:00"
+      group.updated.to_s.should == "1970-01-01 00:00:00 UTC"
       group.edit_uri.should be_nil
       group.etag.should == '"YWJmYzA."'
       group.data.should have(0).items
@@ -244,7 +244,7 @@ describe GContacts::Client do
       group = groups[1]
       group.id.should == "http://www.google.com/m8/feeds/groups/john.doe%40gmail.com/base/ada43d293fdb9b1"
       group.title.should == "Misc"
-      group.updated.to_s.should == "2009-08-17T20:33:20+00:00"
+      group.updated.to_s.should == "2009-08-17 20:33:20 UTC"
       group.edit_uri.should == URI("https://www.google.com/m8/feeds/groups/john.doe%40gmail.com/full/ada43d293fdb9b1")
       group.etag.should == '"QXc8cDVSLyt7I2A9WxNTFUkLRQQ."'
       group.data.should have(0).items
