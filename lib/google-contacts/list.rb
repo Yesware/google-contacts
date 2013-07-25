@@ -32,7 +32,7 @@ module GContacts
         end
       end
 
-      @id, @updated, @title, @author = data["id"], data["updated"], data["title"], data["author"]
+      @id, @updated, @title, @author = data["id"], Time.parse(data["updated"]), data["title"], data["author"]
       @per_page, @start_index, @total_results = data["openSearch:itemsPerPage"].to_i, data["openSearch:startIndex"].to_i, data["openSearch:totalResults"].to_i
       @category = @entries.first.category unless @entries.empty?
     end
